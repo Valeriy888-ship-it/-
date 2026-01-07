@@ -1,0 +1,240 @@
+import React, { useState } from 'react';
+import { 
+  ShieldCheck, 
+  Zap, 
+  Settings, 
+  TrendingUp, 
+  CheckCircle2, 
+  ChevronDown,
+  ChevronUp,
+  Target,
+  Clock,
+  Lock,
+  Calculator,
+  MessageSquare
+} from 'lucide-react';
+
+const App = () => {
+  const [openModule, setOpenModule] = useState(0);
+
+  const colors = {
+    green: '#2E8B57',
+    orange: '#FF6B35',
+    dark: '#333333',
+    beige: '#F5F0E6',
+    white: '#FFFFFF'
+  };
+
+  const sections = [
+    {
+      stage: "ЭТАП 1. БЫСТРЫЕ ДЕНЬГИ",
+      subtitle: "Фундамент",
+      modules: [
+        {
+          id: 0,
+          title: "Модуль 0. Диагностика и спринт-реанимация",
+          result: "Вы находите скрытую прибыль и начинаете получать деньги из уже существующей базы клиентов — без рекламы и вложений. Первые результаты появляются в течение 15 минут работы.",
+          benefits: {
+            now: "Вы окупаете обучение в первую неделю.",
+            future: "У вас всегда есть понятный инструмент, как быстро закрывать пустые окна и не паниковать в просадках."
+          },
+          content: "Аудит текущей ситуации, постановку реальных целей и метод активации «спящих» клиентов."
+        },
+        {
+          id: 1,
+          title: "Модуль 1. Ценообразование и этика продаж",
+          result: "Вы спокойно защищаете стоимость своих услуг и поднимаете чек без внутреннего напряжения и страха потерять клиентов.",
+          benefits: {
+            now: "Доход растёт без увеличения нагрузки.",
+            future: "Формируется аудитория, которая ценит результат, а не ищет скидки."
+          },
+          content: "Реальную себестоимость услуг, психологию цены и продажи через помощь, а не через давление."
+        }
+      ]
+    },
+    {
+      stage: "ЭТАП 2. СИСТЕМА И КОНВЕРСИЯ",
+      subtitle: "Стены",
+      modules: [
+        {
+          id: 2,
+          title: "Модуль 2. Продуктовая линейка и скрипты",
+          result: "Вы уверенно переводите клиентов в абонементы и допродажи, увеличивая средний чек до +40% на каждой консультации.",
+          benefits: {
+            now: "Появляется финансовая подушка.",
+            future: "Вы перестаёте постоянно искать новых клиентов, потому что текущие остаются надолго."
+          },
+          content: "Пакетные предложения, логику консультации и готовые скрипты для переписки."
+        },
+        {
+          id: 3,
+          title: "Модуль 3. WOW-эффект и лояльность",
+          result: "Клиенты сами начинают писать отзывы и рекомендовать вас, превращаясь в адвокатов вашего бренда.",
+          benefits: {
+            now: "«Сарафан» начинает работать осознанно, а не случайно.",
+            future: "Снижается зависимость от платной рекламы."
+          },
+          content: "Сегментацию клиентской базы, системный сбор отзывов и реферальные механики."
+        },
+        {
+          id: 4,
+          title: "Модуль 4. Автоматизация и CRM",
+          result: "Запись и коммуникация с клиентами переходят в систему, которая освобождает вам 5–10 часов в неделю.",
+          benefits: {
+            now: "Уходит хаос, пропущенные сообщения и забытые клиенты.",
+            future: "Появляется фундамент для масштабирования в студию или команду."
+          },
+          content: "Настройку CRM, автоматические напоминания и подтверждения записей."
+        }
+      ]
+    },
+    {
+      stage: "ЭТАП 3. ТРАФИК И МАСШТАБ",
+      subtitle: "Инженерные сети",
+      modules: [
+        {
+          id: 5,
+          title: "Модуль 5. Гео-инженерия и партнёрства",
+          result: "Вы стабильно получаете клиентов из своего района, становясь заметным специалистом в Яндекс.Картах и 2ГИС.",
+          benefits: {
+            now: "Появляются бесплатные заявки.",
+            future: "За вами закрепляется территория и узнаваемость."
+          },
+          content: "Продвижение на картах, работу с агрегаторами и партнёрские стратегии."
+        },
+        {
+          id: 6,
+          title: "Модуль 6. Контент-система и нейросети (ИИ)",
+          result: "Вы создаёте понятный, продающий контент за 20 минут, используя ИИ как личного ассистента.",
+          benefits: {
+            now: "Исчезает стресс «о чём писать».",
+            future: "Блог работает в фоне, прогревая клиентов 24/7."
+          },
+          content: "Instagram, Telegram, сторителлинг и готовые промпты для ChatGPT."
+        }
+      ]
+    },
+    {
+      stage: "ЭТАП 4. БЕЗОПАСНОСТЬ И ФИНАНСЫ",
+      subtitle: "Броня",
+      modules: [
+        {
+          id: 7,
+          title: "Модуль 7. Управление финансами",
+          result: "Вы чётко понимаете, сколько зарабатываете чистыми, и контролируете движение денег.",
+          benefits: {
+            now: "Закрываются финансовые «дыры».",
+            future: "Появляется возможность планировать крупные цели и инвестиции."
+          },
+          content: "Учёт доходов и расходов, налоги и финансовые подушки."
+        },
+        {
+          id: 8,
+          title: "Модуль 8. Юридическая защита и негатив",
+          result: "Вы спокойно работаете в правовом поле и знаете, как реагировать на негатив и проверки.",
+          benefits: {
+            now: "Уходит постоянная тревога.",
+            future: "Бизнес защищён от потребительского экстремизма."
+          },
+          content: "Договоры и согласия по актуальным требованиям, алгоритмы работы с негативными отзывами."
+        },
+        {
+          id: 9,
+          title: "Модуль 9. Финал. Карта на 90 дней",
+          result: "Вы получаете чёткий план выхода на доход 300 000+ и понимаете, что делать шаг за шагом.",
+          benefits: {
+            now: "Это ваша точка опоры.",
+            future: "Вы точно знаете, что делать завтра, через месяц и через год."
+          },
+          content: "Декомпозицию целей на квартал и систему еженедельного контроля ключевых показателей."
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen pb-12" style={{ backgroundColor: colors.beige, color: colors.dark, fontFamily: 'sans-serif' }}>
+      {/* Header */}
+      <div className="bg-white border-b-4 py-12 px-6 text-center" style={{ borderColor: colors.orange }}>
+        <h1 className="text-3xl md:text-5xl font-black uppercase mb-4 tracking-tight">Клиентский поток</h1>
+        <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: colors.green }}>Инженерная система стабильного дохода</h2>
+        <p className="max-w-2xl mx-auto text-gray-600 leading-relaxed">
+          Практическая дорожная карта трансформации вашей частной практики — 
+          от нестабильности и тревоги к системе, прогнозируемым деньгам и уверенности.
+        </p>
+      </div>
+
+      <div className="max-w-4xl mx-auto mt-12 px-4">
+        {sections.map((section, sIdx) => (
+          <div key={sIdx} className="mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-px flex-1 bg-gray-300"></div>
+              <div className="text-center">
+                <span className="block text-xs font-black tracking-widest uppercase opacity-50">{section.subtitle}</span>
+                <span className="text-xl font-bold" style={{ color: colors.green }}>{section.stage}</span>
+              </div>
+              <div className="h-px flex-1 bg-gray-300"></div>
+            </div>
+
+            <div className="space-y-4">
+              {section.modules.map((mod) => (
+                <div 
+                  key={mod.id} 
+                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-transparent transition-all hover:shadow-md"
+                  style={{ borderLeft: openModule === mod.id ? `6px solid ${colors.orange}` : '1px solid #eee' }}
+                >
+                  <button 
+                    onClick={() => setOpenModule(openModule === mod.id ? null : mod.id)}
+                    className="w-full text-left p-5 flex justify-between items-center"
+                  >
+                    <span className="font-bold text-lg">{mod.title}</span>
+                    {openModule === mod.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                  
+                  {openModule === mod.id && (
+                    <div className="p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                      <div className="mb-6">
+                        <h4 className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: colors.orange }}>Результат:</h4>
+                        <p className="font-bold text-gray-800 leading-snug">{mod.result}</p>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6 mb-6">
+                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                          <span className="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                          <p className="text-sm">{mod.benefits.now}</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                          <span className="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                          <p className="text-sm">{mod.benefits.future}</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                        <span className="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                        <p className="text-sm mt-1">{mod.content}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer CTA */}
+      <div className="max-w-4xl mx-auto px-4 mt-16 text-center">
+        <div className="bg-dark p-10 rounded-3xl text-white shadow-2xl" style={{ backgroundColor: colors.dark }}>
+          <h3 className="text-2xl font-bold mb-4 uppercase tracking-tighter">Ваш инструментарий готов к сборке</h3>
+          <p className="mb-8 opacity-70">Excel-таблицы, ИИ-промпты, Скрипты и Юридическая защита включены в каждый этап.</p>
+          <button className="px-10 py-4 rounded-full font-black uppercase transition-transform hover:scale-105" style={{ backgroundColor: colors.orange }}>
+            Забронировать аудит системы
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
