@@ -1,240 +1,307 @@
-import React, { useState } from 'react';
-import { 
-  ShieldCheck, 
-  Zap, 
-  Settings, 
-  TrendingUp, 
-  CheckCircle2, 
-  ChevronDown,
-  ChevronUp,
-  Target,
-  Clock,
-  Lock,
-  Calculator,
-  MessageSquare
-} from 'lucide-react';
-
-const App = () => {
-  const [openModule, setOpenModule] = useState(0);
-
-  const colors = {
-    green: '#2E8B57',
-    orange: '#FF6B35',
-    dark: '#333333',
-    beige: '#F5F0E6',
-    white: '#FFFFFF'
-  };
-
-  const sections = [
-    {
-      stage: "ЭТАП 1. БЫСТРЫЕ ДЕНЬГИ",
-      subtitle: "Фундамент",
-      modules: [
-        {
-          id: 0,
-          title: "Модуль 0. Диагностика и спринт-реанимация",
-          result: "Вы находите скрытую прибыль и начинаете получать деньги из уже существующей базы клиентов — без рекламы и вложений. Первые результаты появляются в течение 15 минут работы.",
-          benefits: {
-            now: "Вы окупаете обучение в первую неделю.",
-            future: "У вас всегда есть понятный инструмент, как быстро закрывать пустые окна и не паниковать в просадках."
-          },
-          content: "Аудит текущей ситуации, постановку реальных целей и метод активации «спящих» клиентов."
-        },
-        {
-          id: 1,
-          title: "Модуль 1. Ценообразование и этика продаж",
-          result: "Вы спокойно защищаете стоимость своих услуг и поднимаете чек без внутреннего напряжения и страха потерять клиентов.",
-          benefits: {
-            now: "Доход растёт без увеличения нагрузки.",
-            future: "Формируется аудитория, которая ценит результат, а не ищет скидки."
-          },
-          content: "Реальную себестоимость услуг, психологию цены и продажи через помощь, а не через давление."
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клиентский поток - Инженерная система стабильного дохода</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-      ]
-    },
-    {
-      stage: "ЭТАП 2. СИСТЕМА И КОНВЕРСИЯ",
-      subtitle: "Стены",
-      modules: [
-        {
-          id: 2,
-          title: "Модуль 2. Продуктовая линейка и скрипты",
-          result: "Вы уверенно переводите клиентов в абонементы и допродажи, увеличивая средний чек до +40% на каждой консультации.",
-          benefits: {
-            now: "Появляется финансовая подушка.",
-            future: "Вы перестаёте постоянно искать новых клиентов, потому что текущие остаются надолго."
-          },
-          content: "Пакетные предложения, логику консультации и готовые скрипты для переписки."
-        },
-        {
-          id: 3,
-          title: "Модуль 3. WOW-эффект и лояльность",
-          result: "Клиенты сами начинают писать отзывы и рекомендовать вас, превращаясь в адвокатов вашего бренда.",
-          benefits: {
-            now: "«Сарафан» начинает работать осознанно, а не случайно.",
-            future: "Снижается зависимость от платной рекламы."
-          },
-          content: "Сегментацию клиентской базы, системный сбор отзывов и реферальные механики."
-        },
-        {
-          id: 4,
-          title: "Модуль 4. Автоматизация и CRM",
-          result: "Запись и коммуникация с клиентами переходят в систему, которая освобождает вам 5–10 часов в неделю.",
-          benefits: {
-            now: "Уходит хаос, пропущенные сообщения и забытые клиенты.",
-            future: "Появляется фундамент для масштабирования в студию или команду."
-          },
-          content: "Настройку CRM, автоматические напоминания и подтверждения записей."
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
-      ]
-    },
-    {
-      stage: "ЭТАП 3. ТРАФИК И МАСШТАБ",
-      subtitle: "Инженерные сети",
-      modules: [
-        {
-          id: 5,
-          title: "Модуль 5. Гео-инженерия и партнёрства",
-          result: "Вы стабильно получаете клиентов из своего района, становясь заметным специалистом в Яндекс.Картах и 2ГИС.",
-          benefits: {
-            now: "Появляются бесплатные заявки.",
-            future: "За вами закрепляется территория и узнаваемость."
-          },
-          content: "Продвижение на картах, работу с агрегаторами и партнёрские стратегии."
-        },
-        {
-          id: 6,
-          title: "Модуль 6. Контент-система и нейросети (ИИ)",
-          result: "Вы создаёте понятный, продающий контент за 20 минут, используя ИИ как личного ассистента.",
-          benefits: {
-            now: "Исчезает стресс «о чём писать».",
-            future: "Блог работает в фоне, прогревая клиентов 24/7."
-          },
-          content: "Instagram, Telegram, сторителлинг и готовые промпты для ChatGPT."
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-      ]
-    },
-    {
-      stage: "ЭТАП 4. БЕЗОПАСНОСТЬ И ФИНАНСЫ",
-      subtitle: "Броня",
-      modules: [
-        {
-          id: 7,
-          title: "Модуль 7. Управление финансами",
-          result: "Вы чётко понимаете, сколько зарабатываете чистыми, и контролируете движение денег.",
-          benefits: {
-            now: "Закрываются финансовые «дыры».",
-            future: "Появляется возможность планировать крупные цели и инвестиции."
-          },
-          content: "Учёт доходов и расходов, налоги и финансовые подушки."
-        },
-        {
-          id: 8,
-          title: "Модуль 8. Юридическая защита и негатив",
-          result: "Вы спокойно работаете в правовом поле и знаете, как реагировать на негатив и проверки.",
-          benefits: {
-            now: "Уходит постоянная тревога.",
-            future: "Бизнес защищён от потребительского экстремизма."
-          },
-          content: "Договоры и согласия по актуальным требованиям, алгоритмы работы с негативными отзывами."
-        },
-        {
-          id: 9,
-          title: "Модуль 9. Финал. Карта на 90 дней",
-          result: "Вы получаете чёткий план выхода на доход 300 000+ и понимаете, что делать шаг за шагом.",
-          benefits: {
-            now: "Это ваша точка опоры.",
-            future: "Вы точно знаете, что делать завтра, через месяц и через год."
-          },
-          content: "Декомпозицию целей на квартал и систему еженедельного контроля ключевых показателей."
+        
+        .shadow-soft {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
-      ]
-    }
-  ];
-
-  return (
-    <div className="min-h-screen pb-12" style={{ backgroundColor: colors.beige, color: colors.dark, fontFamily: 'sans-serif' }}>
-      {/* Header */}
-      <div className="bg-white border-b-4 py-12 px-6 text-center" style={{ borderColor: colors.orange }}>
-        <h1 className="text-3xl md:text-5xl font-black uppercase mb-4 tracking-tight">Клиентский поток</h1>
-        <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: colors.green }}>Инженерная система стабильного дохода</h2>
-        <p className="max-w-2xl mx-auto text-gray-600 leading-relaxed">
-          Практическая дорожная карта трансформации вашей частной практики — 
-          от нестабильности и тревоги к системе, прогнозируемым деньгам и уверенности.
-        </p>
-      </div>
-
-      <div className="max-w-4xl mx-auto mt-12 px-4">
-        {sections.map((section, sIdx) => (
-          <div key={sIdx} className="mb-12">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-px flex-1 bg-gray-300"></div>
-              <div className="text-center">
-                <span className="block text-xs font-black tracking-widest uppercase opacity-50">{section.subtitle}</span>
-                <span className="text-xl font-bold" style={{ color: colors.green }}>{section.stage}</span>
-              </div>
-              <div className="h-px flex-1 bg-gray-300"></div>
-            </div>
-
-            <div className="space-y-4">
-              {section.modules.map((mod) => (
-                <div 
-                  key={mod.id} 
-                  className="bg-white rounded-2xl overflow-hidden shadow-sm border border-transparent transition-all hover:shadow-md"
-                  style={{ borderLeft: openModule === mod.id ? `6px solid ${colors.orange}` : '1px solid #eee' }}
-                >
-                  <button 
-                    onClick={() => setOpenModule(openModule === mod.id ? null : mod.id)}
-                    className="w-full text-left p-5 flex justify-between items-center"
-                  >
-                    <span className="font-bold text-lg">{mod.title}</span>
-                    {openModule === mod.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                  </button>
-                  
-                  {openModule === mod.id && (
-                    <div className="p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
-                      <div className="mb-6">
-                        <h4 className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: colors.orange }}>Результат:</h4>
-                        <p className="font-bold text-gray-800 leading-snug">{mod.result}</p>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-6 mb-6">
-                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                          <span className="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
-                          <p className="text-sm">{mod.benefits.now}</p>
-                        </div>
-                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                          <span className="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
-                          <p className="text-sm">{mod.benefits.future}</p>
-                        </div>
-                      </div>
-
-                      <div className="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
-                        <span className="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
-                        <p className="text-sm mt-1">{mod.content}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Footer CTA */}
-      <div className="max-w-4xl mx-auto px-4 mt-16 text-center">
-        <div className="bg-dark p-10 rounded-3xl text-white shadow-2xl" style={{ backgroundColor: colors.dark }}>
-          <h3 className="text-2xl font-bold mb-4 uppercase tracking-tighter">Ваш инструментарий готов к сборке</h3>
-          <p className="mb-8 opacity-70">Excel-таблицы, ИИ-промпты, Скрипты и Юридическая защита включены в каждый этап.</p>
-          <button className="px-10 py-4 rounded-full font-black uppercase transition-transform hover:scale-105" style={{ backgroundColor: colors.orange }}>
-            Забронировать аудит системы
-          </button>
+        
+        .hover-lift:hover {
+            transform: translateY(-3px);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#F5F0E6] text-gray-800">
+    <div id="app" class="pb-12">
+        <!-- Header -->
+        <div class="bg-white border-b-4 py-12 px-6 text-center" style="border-color: #FF6B35">
+            <h1 class="text-3xl md:text-5xl font-black uppercase mb-4 tracking-tight">Клиентский поток</h1>
+            <h2 class="text-xl md:text-2xl font-bold mb-4 text-[#2E8B57]">Инженерная система стабильного дохода</h2>
+            <p class="max-w-2xl mx-auto text-gray-600 leading-relaxed">
+                Практическая дорожная карта трансформации вашей частной практики — 
+                от нестабильности и тревоги к системе, прогнозируемым деньгам и уверенности.
+            </p>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default App;
+        <div class="max-w-4xl mx-auto mt-12 px-4">
+            <!-- Этап 1 -->
+            <div class="mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                    <div class="text-center">
+                        <span class="block text-xs font-black tracking-widest uppercase opacity-50">Фундамент</span>
+                        <span class="text-xl font-bold text-[#2E8B57]">ЭТАП 1. БЫСТРЫЕ ДЕНЬГИ</span>
+                    </div>
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                </div>
 
+                <div class="space-y-4">
+                    <!-- Модуль 0 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="0">
+                        <button onclick="toggleModule(0)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 0. Диагностика и спринт-реанимация</span>
+                            <span id="icon-0">▼</span>
+                        </button>
+                        
+                        <div id="content-0" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Вы находите скрытую прибыль и начинаете получать деньги из уже существующей базы клиентов — без рекламы и вложений. Первые результаты появляются в течение 15 минут работы.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Вы окупаете обучение в первую неделю.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">У вас всегда есть понятный инструмент, как быстро закрывать пустые окна и не паниковать в просадках.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Аудит текущей ситуации, постановку реальных целей и метод активации «спящих» клиентов.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Модуль 1 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="1">
+                        <button onclick="toggleModule(1)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 1. Ценообразование и этика продаж</span>
+                            <span id="icon-1">▼</span>
+                        </button>
+                        
+                        <div id="content-1" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Вы спокойно защищаете стоимость своих услуг и поднимаете чек без внутреннего напряжения и страха потерять клиентов.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Доход растёт без увеличения нагрузки.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">Формируется аудитория, которая ценит результат, а не ищет скидки.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Реальную себестоимость услуг, психологию цены и продажи через помощь, а не через давление.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Этап 2 -->
+            <div class="mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                    <div class="text-center">
+                        <span class="block text-xs font-black tracking-widest uppercase opacity-50">Стены</span>
+                        <span class="text-xl font-bold text-[#2E8B57]">ЭТАП 2. СИСТЕМА И КОНВЕРСИЯ</span>
+                    </div>
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Модуль 2 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="2">
+                        <button onclick="toggleModule(2)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 2. Продуктовая линейка и скрипты</span>
+                            <span id="icon-2">▼</span>
+                        </button>
+                        
+                        <div id="content-2" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Вы уверенно переводите клиентов в абонементы и допродажи, увеличивая средний чек до +40% на каждой консультации.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Появляется финансовая подушка.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">Вы перестаёте постоянно искать новых клиентов, потому что текущие остаются надолго.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Пакетные предложения, логику консультации и готовые скрипты для переписки.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Модуль 3 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="3">
+                        <button onclick="toggleModule(3)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 3. WOW-эффект и лояльность</span>
+                            <span id="icon-3">▼</span>
+                        </button>
+                        
+                        <div id="content-3" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Клиенты сами начинают писать отзывы и рекомендовать вас, превращаясь в адвокатов вашего бренда.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">«Сарафан» начинает работать осознанно, а не случайно.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">Снижается зависимость от платной рекламы.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Сегментацию клиентской базы, системный сбор отзывов и реферальные механики.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Модуль 4 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="4">
+                        <button onclick="toggleModule(4)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 4. Автоматизация и CRM</span>
+                            <span id="icon-4">▼</span>
+                        </button>
+                        
+                        <div id="content-4" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Запись и коммуникация с клиентами переходят в систему, которая освобождает вам 5–10 часов в неделю.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Уходит хаос, пропущенные сообщения и забытые клиенты.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">Появляется фундамент для масштабирования в студию или команду.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Настройку CRM, автоматические напоминания и подтверждения записей.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Этап 3 -->
+            <div class="mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                    <div class="text-center">
+                        <span class="block text-xs font-black tracking-widest uppercase opacity-50">Инженерные сети</span>
+                        <span class="text-xl font-bold text-[#2E8B57]">ЭТАП 3. ТРАФИК И МАСШТАБ</span>
+                    </div>
+                    <div class="h-px flex-1 bg-gray-300"></div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Модуль 5 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="5">
+                        <button onclick="toggleModule(5)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 5. Гео-инженерия и партнёрства</span>
+                            <span id="icon-5">▼</span>
+                        </button>
+                        
+                        <div id="content-5" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Вы стабильно получаете клиентов из своего района, становясь заметным специалистом в Яндекс.Картах и 2ГИС.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Появляются бесплатные заявки.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">За вами закрепляется территория и узнаваемость.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100/50 p-4 rounded-xl border border-dashed border-gray-300">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Что разбираем:</span>
+                                <p class="text-sm mt-1">Продвижение на картах, работу с агрегаторами и партнёрские стратегии.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Модуль 6 -->
+                    <div class="module bg-white rounded-2xl overflow-hidden shadow-soft border border-gray-100 hover:shadow-md transition-all" data-id="6">
+                        <button onclick="toggleModule(6)" class="module-btn w-full text-left p-5 flex justify-between items-center">
+                            <span class="font-bold text-lg">Модуль 6. Контент-система и нейросети (ИИ)</span>
+                            <span id="icon-6">▼</span>
+                        </button>
+                        
+                        <div id="content-6" class="hidden p-6 pt-0 border-t border-gray-50 bg-gray-50/30">
+                            <div class="mb-6">
+                                <h4 class="text-xs font-black uppercase tracking-widest mb-2 text-[#FF6B35]">Результат:</h4>
+                                <p class="font-bold text-gray-800 leading-snug">Вы создаёте понятный, продающий контент за 20 минут, используя ИИ как личного ассистента.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-green-600 mb-1">СЕЙЧАС:</span>
+                                    <p class="text-sm">Исчезает стресс «о чём писать».</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="block text-xs font-bold text-blue-600 mb-1">В БУДУЩЕМ:</span>
+                                    <p class="text-sm">Блог работает в фоне, прогревая клиентов 24/7.</p>
+                                </div>
+                            </div>
+
+                            <di
